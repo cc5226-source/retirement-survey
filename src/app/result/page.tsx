@@ -34,33 +34,41 @@ function ResultContent() {
   let grade = '';
   let message = '';
   let colorClass = '';
+  let imageSrc = '';
 
   if (score >= 80) {
-    grade = '골든 시니어';
-    message = '완벽한 준비! 춘천시민강사나 사회공헌 활동의 리더로 초대합니다.';
+    grade = '골든 라이트';
+    message = '노후준비가 전반적으로 매우 탄탄합니다.';
     colorClass = 'text-yellow-600';
+    imageSrc = '/goldenlight.jpg';
   } else if (score >= 60) {
-    grade = '실버 로드';
-    message = '안정적입니다. 부족한 영역만 보완하면 무결점 노후입니다.';
-    colorClass = 'text-blue-600';
+    grade = '실버 라이트';
+    message = '노후준비가 전반적으로 안정적인 편입니다.';
+    colorClass = 'text-gray-500';
+    imageSrc = '/silverlight.jpg';
   } else if (score >= 40) {
     grade = '옐로 라이트';
-    message = '주의가 필요합니다. 1:1 전문 상담을 통해 맞춤형 설계를 받아보세요.';
-    colorClass = 'text-orange-500';
+    message = '일부 영역에 점검과 보완이 필요합니다.';
+    colorClass = 'text-amber-500';
+    imageSrc = '/yellowlight.jpg';
   } else {
     grade = '레드 라이트';
-    message = '긴급 진단 대상입니다. 재단이 직접 찾아가 해결책을 찾아드립니다.';
+    message = '집중적인 점검과 지원이 필요합니다.';
     colorClass = 'text-red-600';
+    imageSrc = '/redlight.jpg';
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4 pb-24 relative">
       <div className="max-w-md w-full bg-white rounded-3xl shadow-xl p-10 text-center space-y-6">
         <h1 className="text-4xl font-extrabold text-gray-900">진단 결과</h1>
         
-        <div className="py-8">
-          <div className="text-7xl font-black text-blue-600 mb-6">{score}점</div>
-          <h2 className={`text-3xl font-bold mb-6 ${colorClass}`}>{grade}</h2>
+        <div className="py-4">
+          <div className="flex justify-center mb-6">
+            <img src={imageSrc} alt={grade} className="w-36 h-36 object-contain" />
+          </div>
+          <div className="text-6xl font-black text-blue-600 mb-4">{score}점</div>
+          <h2 className={`text-3xl font-bold mb-4 ${colorClass}`}>{grade}</h2>
           <p className="text-gray-800 text-xl font-medium leading-relaxed break-keep">{message}</p>
         </div>
 

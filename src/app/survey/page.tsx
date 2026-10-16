@@ -10,7 +10,9 @@ import { collection, addDoc, serverTimestamp, getDocs, query, where } from 'fire
 function SurveyContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const planId = (searchParams.get('plan') as PlanType) || 'plan1';
+  const rawPlanId = (searchParams.get('plan') as PlanType) || 'plan1';
+  // 2안 임시 비활성화: plan2로 접근 시 plan1으로 처리
+  const planId: PlanType = rawPlanId === 'plan2' ? 'plan1' : rawPlanId;
   
   const plan = plans[planId];
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -40,8 +42,8 @@ function SurveyContent() {
   };
 
   const getGrade = (score: number) => {
-    if (score >= 80) return '골든 시니어';
-    if (score >= 60) return '실버 로드';
+    if (score >= 80) return '골든 라이트';
+    if (score >= 60) return '실버 라이트';
     if (score >= 40) return '옐로 라이트';
     return '레드 라이트';
   };

@@ -73,9 +73,12 @@ export default function AdminPage() {
   // --- 통계 계산 ---
   const totalParticipants = data.length;
   
-  // 등급별 분포
+  // 등급별 분포 (구 등급명 호환 처리 포함)
   const gradeCount = data.reduce((acc, curr) => {
-    acc[curr.grade] = (acc[curr.grade] || 0) + 1;
+    let g = curr.grade;
+    if (g === '골든 시니어') g = '골든 라이트';
+    if (g === '실버 로드') g = '실버 라이트';
+    acc[g] = (acc[g] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
 
@@ -202,7 +205,7 @@ export default function AdminPage() {
               <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                 <h3 className="text-lg font-bold text-gray-800 mb-6">등급별 분포</h3>
                 <div className="space-y-4">
-                  {['골든 시니어', '실버 로드', '옐로 라이트', '레드 라이트'].map(grade => {
+                  {['골든 라이트', '실버 라이트', '옐로 라이트', '레드 라이트'].map(grade => {
                     const count = gradeCount[grade] || 0;
                     const percent = totalParticipants ? Math.round((count / totalParticipants) * 100) : 0;
                     return (
