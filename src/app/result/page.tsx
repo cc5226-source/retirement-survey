@@ -67,7 +67,7 @@ function ResultContent() {
           <div className="flex justify-center mb-6">
             <img src={imageSrc} alt={grade} className="w-36 h-36 object-contain" />
           </div>
-          <div className="text-6xl font-black text-blue-600 mb-4">{score}점</div>
+          <div className={`text-6xl font-black mb-4 ${colorClass}`}>{score}점</div>
           <h2 className={`text-3xl font-bold mb-4 ${colorClass}`}>{grade}</h2>
           <p className="text-gray-800 text-xl font-medium leading-relaxed break-keep">{message}</p>
         </div>
